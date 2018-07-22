@@ -4,13 +4,47 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-libre-form here.
+React component for WP Libre Form. Give it the location of your WordPress instance and the form slug and it handles the rest.
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+And if that's not good enough for you, it's rather flexible and can be customized.
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+# Installation
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+`npm install react-libre-form`
+
+# Dependencies
+There are no dependencies, except the peer dependency of html-react-parser, which is required to render the HTML WordPress outputs.
+If you're already using a HTML parser w/ WP REST API, I suggest that you migrate to html-react-parser, as react-html-parser is massive.
+
+# Usage
+Import and configure, render like any other component
+
+```
+import LibreForm, { configure } from 'react-libre-form'
+
+configure({
+  WordPress: 'https://libreformbuilder.local',
+})
+
+class Demo extends Component {
+  render() {
+    return <div>
+      <h1>react-libre-form Demo</h1>
+      <LibreForm form="form-slug"
+        onSubmitSuccess={(...arg) => console.log(arg, 'success1')}
+        onSubmitDenied={(...arg) => console.log(arg, 'denied1')}
+        afterLoad={() => console.log('wtf')}
+      />
+    </div>
+  }
+}
+```
+
+[build-badge]: https://img.shields.io/travis/libreform/react-libre-form/master.png?style=flat-square
+[build]: https://travis-ci.org/libreform/react-libre-form
+
+[npm-badge]: https://img.shields.io/npm/v/react-libre-form.png?style=flat-square
+[npm]: https://www.npmjs.org/package/react-libre-form
+
+[coveralls-badge]: https://img.shields.io/coveralls/libreform/react-libre-form/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/libreform/react-libre-form
