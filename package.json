@@ -1,6 +1,6 @@
 {
   "name": "react-libre-form",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "react-libre-form React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -19,7 +19,7 @@
     "test:watch": "nwb test-react --server"
   },
   "peerDependencies": {
-    "html-react-parser": "^0.4.6"
+    "html-react-parser": "^0.4.6",
     "react": "16.x"
   },
   "devDependencies": {
