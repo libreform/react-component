@@ -6,11 +6,11 @@ const script = {
    * Load WPLF client side bundle. Also includes fetch polyfill if necessary,
    * so fetch can be used for the form fetching also. Only necessary to do once.
    */
-  load: async () => {
+  load: () => {
     script.status = STATUS.LOADING
     const { scriptLocation } = window.ajax_object
 
-    await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const tag = document.createElement('script')
       const timeout = setTimeout(reject, 30000)
       tag.src = scriptLocation
