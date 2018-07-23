@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import HTML from './lib/parser.js'
 import STATUS from './lib/status.js'
 import script from './lib/script.js'
+import { messages, errors } from './lib/errors.js'
 
 /*
  * Stores for possible callbacks. Must live outside of component state to allow
@@ -70,7 +71,7 @@ export default class LibreForm extends Component {
       }
     },
     loading: props => <p>Loading...</p>,
-    error: props => <p>Error occurred</p>,
+    error: ({ message }) => <p>{message || 'Error occurred'}</p>,
     referrer: window.location.href,
     onSubmitSuccess: (response) => console.log('Form submission success', response),
     onSubmitDenied: (response) => console.log('Form submission denied', response),
@@ -120,7 +121,15 @@ export default class LibreForm extends Component {
 
     return new Promise((resolve, reject) => {
       fetch(`${WordPress}/wp-json/wp/v2/wplf-form?slug=${form}&per_page=1`)
-        .then(r => r.json())
+        .then(r => {
+          const { ok } = r
+
+          if (!ok) {
+            return reject(errors.failedToLoadForm())
+          } else {
+            return r.json()
+          }
+        })
         .then(results => {
           if (!results.length) {
             throw new Error(`No form found with provided slug ${form}`)
@@ -135,17 +144,32 @@ export default class LibreForm extends Component {
             }
           }, resolve)
         })
-        .catch(e => {
-          console.log('Failed to load form', e)
-          this.setState({
-            form: {
-              status: STATUS.ERROR,
-              data: e,
-            }
-          }, reject)
-        })
+        .catch(reject)
     })
+  }
 
+  setErrorState = (error) => {
+    if (error) {
+      const { message } = error
+
+      // Known errors are shown with a different message.
+      if (messages.isKnown(message)) {
+        return this.setState({
+          form: {
+            status: STATUS.ERROR,
+            data: error,
+          }
+        })
+      }
+    }
+
+    // If it wasn't a known error (or `error` is undefined), set a generic error
+    this.setState({
+      form: {
+        status: STATUS.ERROR,
+        data: errors.unknown()
+      }
+    })
   }
 
   isLoaded() {
@@ -197,15 +221,15 @@ export default class LibreForm extends Component {
     if (script.status === STATUS.NOT_REQUESTED || script.status === STATUS.ERROR) {
       script.load().then(() => {
         beforeLoad && beforeLoad(form, container)
-        this.loadForm().then(() => {
+        return this.loadForm().then(() => {
           this.onReady()
         })
-      })
+      }).catch(this.setErrorState)
     } else {
       beforeLoad && beforeLoad(form, container)
       this.loadForm().then(() => {
         this.onReady()
-      })
+      }).catch(this.setErrorState)
     }
   }
 

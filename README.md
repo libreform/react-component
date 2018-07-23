@@ -8,6 +8,8 @@ React component for WP Libre Form. Give it the location of your WordPress instan
 
 And if that's not good enough for you, it's rather flexible and can be customized.
 
+The "API" may change until 1.0.0 is reached, after which semantic versioning will be used.
+
 # Installation
 
 `npm install react-libre-form`

@@ -1,4 +1,5 @@
 import STATUS from './status'
+import { errors } from './errors'
 
 const script = {
   status: STATUS.NOT_REQUESTED,
@@ -12,7 +13,7 @@ const script = {
 
     return new Promise((resolve, reject) => {
       const tag = document.createElement('script')
-      const timeout = setTimeout(reject, 30000)
+      const timeout = setTimeout(() => reject(errors.scriptTimeout()), 30000)
       tag.src = scriptLocation
       tag.onload = (e) => {
         clearInterval(timeout)
