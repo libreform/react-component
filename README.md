@@ -26,6 +26,10 @@ import LibreForm, { configure } from 'react-libre-form'
 
 configure({
   WordPress: 'https://libreformbuilder.local',
+  i18n: {
+    loading: 'Custom loading message',
+    scriptTimeout: 'Timeout while loading wplf-client.js',
+  }
 })
 
 class Demo extends Component {
