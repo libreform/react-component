@@ -2,6 +2,7 @@ export const messages = {
   _messages: {
     scriptTimeout: 'WP Libre Form script load timeout',
     failedToLoadForm: 'Unable to load form',
+    formNotFound: 'Form not found',
     unknown: 'Unknown error occurred',
   },
 

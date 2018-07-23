@@ -131,8 +131,8 @@ export default class LibreForm extends Component {
           }
         })
         .then(results => {
-          if (!results.length) {
-            throw new Error(`No form found with provided slug ${form}`)
+          if (!results || !results.length) {
+            return reject(errors.formNotFound())
           }
 
           const post = results[0]
