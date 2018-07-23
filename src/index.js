@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import HTML from './lib/parser.js'
 import STATUS from './lib/status.js'
 import script from './lib/script.js'
+import defaults from './lib/defaults.js'
 import { messages, errors } from './lib/errors.js'
 
 /*
@@ -14,16 +15,29 @@ const success = {}
 const denied = {}
 
 export const configure = (options = {}) => {
-  const defaults = {
-    WordPress: null,
-    ajaxCredentials: 'same-origin',
-    scriptLocation: '/wp-content/plugins/wp-libre-form/assets/scripts/wplf-form.js',
-    onSubmitFailure: (error) => { throw error },
+  const { i18n: defaultI18n, ...otherDefaults } = defaults
+  const { i18n: overridingI18n, ...otherOptions } = options
+  const {
+    WordPress,
+    ajaxCredentials,
+    scriptLocation,
+    onSubmitFailure,
+    i18n
+  } = {
+    ...otherDefaults,
+    ...otherOptions,
+    i18n: {
+      ...defaultI18n,
+      ...overridingI18n,
+    },
   }
-  const { WordPress, ajaxCredentials, scriptLocation, onSubmitFailure } = { ...defaults, ...options }
+
+  console.log(defaultI18n, overridingI18n)
+  console.log({ ...defaultI18n, ...overridingI18n })
+  messages.translate(i18n)
 
   if (WordPress === null) {
-    throw new Error('WordPress URL must be set')
+    throw errors.WPURLNull()
   }
 
   const conf = {
@@ -35,6 +49,7 @@ export const configure = (options = {}) => {
       ? WordPress + scriptLocation
       : scriptLocation,
     onSubmitFailure,
+    i18n,
   }
 
   window.ajax_object = conf
@@ -70,8 +85,8 @@ export default class LibreForm extends Component {
         }
       }
     },
-    loading: props => <p>Loading...</p>,
-    error: ({ message }) => <p>{message || 'Error occurred'}</p>,
+    loading: props => <p>{window.ajax_object.i18n.loading}</p>,
+    error: ({ message, ...rest }) => console.log(rest, message) || <p>Error: {message}</p>,
     referrer: window.location.href,
     onSubmitSuccess: (response) => console.log('Form submission success', response),
     onSubmitDenied: (response) => console.log('Form submission denied', response),
@@ -215,7 +230,7 @@ export default class LibreForm extends Component {
     const container = this.container
 
     if (!window.ajax_object) {
-      throw new Error('You have to configure() LibreForm before mounting')
+      throw errors.notConfigured()
     }
 
     if (script.status === STATUS.NOT_REQUESTED || script.status === STATUS.ERROR) {
