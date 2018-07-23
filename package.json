@@ -1,6 +1,6 @@
 {
   "name": "react-libre-form",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react-libre-form React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,7 +25,8 @@
   "devDependencies": {
     "nwb": "0.21.x",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "html-react-parser": "^0.4.6"
   },
   "author": "Christian Nikkanen <hi@kisu.li>",
   "license": "MIT",
