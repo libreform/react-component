@@ -32,8 +32,6 @@ export const configure = (options = {}) => {
     },
   }
 
-  console.log(defaultI18n, overridingI18n)
-  console.log({ ...defaultI18n, ...overridingI18n })
   messages.translate(i18n)
 
   if (WordPress === null) {
@@ -86,7 +84,7 @@ export default class LibreForm extends Component {
       }
     },
     loading: props => <p>{window.ajax_object.i18n.loading}</p>,
-    error: ({ message, ...rest }) => console.log(rest, message) || <p>Error: {message}</p>,
+    error: ({ message }) => <p>{message}</p>,
     referrer: window.location.href,
     onSubmitSuccess: (response) => console.log('Form submission success', response),
     onSubmitDenied: (response) => console.log('Form submission denied', response),

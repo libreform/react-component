@@ -4,7 +4,11 @@ import {render} from 'react-dom'
 import LibreForm, { configure } from '../../src'
 
 configure({
-  WordPress: 'https://libreformbuilder.local',
+  WordPress: 'http://127.0.0.1:8089',
+  scriptLocation: '/script',
+  i18n: {
+    loading: 'Standard loading message is lame',
+  }
 })
 
 class Demo extends Component {
