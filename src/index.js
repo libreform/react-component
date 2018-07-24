@@ -20,11 +20,14 @@ export const configure = (options = {}) => {
   const {
     WordPress,
     ajaxCredentials,
+    ajaxEndpoint,
     scriptLocation,
     onSubmitFailure,
+    headers,
     i18n
   } = {
     ...otherDefaults,
+    ...(window.ajax_object || {}), // Allow calling configure multiple times
     ...otherOptions,
     i18n: {
       ...defaultI18n,
@@ -40,9 +43,11 @@ export const configure = (options = {}) => {
 
   const conf = {
     ajax_url: `${WordPress}/wp-admin/admin-ajax.php`,
+    ajax_endpoint: ajaxEndpoint,
     ajax_credentials: ajaxCredentials,
     wplf_assets_dir: `${WordPress}/wp-content/plugins/wp-libre-form/assets`,
     WordPress,
+    request_headers: headers,
     scriptLocation: scriptLocation.indexOf('http') === -1
       ? WordPress + scriptLocation
       : scriptLocation,
