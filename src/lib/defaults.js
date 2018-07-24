@@ -1,6 +1,6 @@
 export default {
   WordPress: null,
-  ajaxEndpoint: '?action=wplf_submit',
+  ajaxURL: '/wp-admin/admin-ajax.php?action=wplf_submit',
   ajaxCredentials: 'same-origin',
   headers: {},
   scriptLocation: '/wp-content/plugins/wp-libre-form/assets/scripts/wplf-form.js',

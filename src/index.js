@@ -20,7 +20,7 @@ export const configure = (options = {}) => {
   const {
     WordPress,
     ajaxCredentials,
-    ajaxEndpoint,
+    ajaxURL,
     scriptLocation,
     onSubmitFailure,
     headers,
@@ -42,8 +42,9 @@ export const configure = (options = {}) => {
   }
 
   const conf = {
-    ajax_url: `${WordPress}/wp-admin/admin-ajax.php`,
-    ajax_endpoint: ajaxEndpoint,
+    ajax_url: ajaxURL.indexOf('http') === -1
+      ? WordPress + ajaxURL
+      : ajaxURL,
     ajax_credentials: ajaxCredentials,
     wplf_assets_dir: `${WordPress}/wp-content/plugins/wp-libre-form/assets`,
     WordPress,
