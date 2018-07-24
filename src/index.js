@@ -139,7 +139,10 @@ export default class LibreForm extends Component {
     this.setState({ form: { ...this.state.form, status: STATUS.LOADING } })
 
     return new Promise((resolve, reject) => {
-      fetch(`${WordPress}/wp-json/wp/v2/wplf-form?slug=${form}&per_page=1`)
+      fetch(`${WordPress}/wp-json/wp/v2/wplf-form?slug=${form}&per_page=1`, {
+        credentials: ajax_object.ajax_credentials || 'same-origin',
+        headers: ajax_object.request_headers || {},
+      })
         .then(r => {
           const { ok } = r
 
