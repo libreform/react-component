@@ -77,15 +77,31 @@ export default class LibreForm extends Component {
 
   static defaultProps = {
     replace: (domNode) => {
-      const { attribs, name } = domNode
+      const { attribs, name: htmlEl } = domNode
 
       if (attribs) {
-        if (name === 'input') {
-          const { type, name } = attribs
+        if (htmlEl === 'input') {
+          const {
+            defaultvalue, // https://github.com/remarkablemark/html-react-parser/issues/63#issuecomment-407593055
+            value,
+            ...props,
+          } = attribs
+
+          // We don't want to "remove" any attributes, which is why this is separate
+          const {
+            type,
+            name,
+          } = props
+
+          if (defaultvalue || value) {
+            props.defaultValue = defaultvalue || value
+          }
 
           if (type === 'hidden' && name === 'referrer') {
-            return <input type="hidden" name="referrer" defaultValue={window.location.href} />
+            props.defaultValue = window.location.href
           }
+
+          return React.createElement(htmlEl, props)
         }
       }
     },
