@@ -1,6 +1,6 @@
 {
   "name": "react-libre-form",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "react-libre-form React component",
   "main": "lib/index.js",
   "module": "es/index.js",
