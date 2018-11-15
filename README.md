@@ -46,6 +46,12 @@ class Demo extends Component {
 }
 ```
 
+# Gotchas
+## Submit button value is dismissed
+If you have `<input type="submit" value="Send form" />` in your form HTML, you might notice that the "Send form" is missing in your rendered form. TL;DR explanation on why this happens: React.
+
+`<button type="submit">Send form</button>` is functionally equivalent and works without an issue. 
+
 [build-badge]: https://img.shields.io/travis/libreform/react-libre-form/master.png?style=flat-square
 [build]: https://travis-ci.org/libreform/react-libre-form
 
