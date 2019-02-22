@@ -4,7 +4,7 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-React component for WP Libre Form. Give it the location of your WordPress instance and the form slug and it handles the rest.
+React component for WP Libre Form. Give it the location of your WordPress instance and the form slug (or id) and it handles the rest.
 
 And if that's not good enough for you, it's rather flexible and can be customized.
 
