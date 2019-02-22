@@ -10,6 +10,7 @@ const errorMessages = {
   notConfigured: i18n.errorNotConfigured,
   WPURLNull: i18n.errorWPURLNull,
   unknown: i18n.errorUnknown,
+  invalidFormProp: i18n.invalidFormProp,
 }
 
 const messages = {

@@ -8,7 +8,8 @@ React component for WP Libre Form. Give it the location of your WordPress instan
 
 And if that's not good enough for you, it's rather flexible and can be customized.
 
-The "API" may change until 1.0.0 is reached, after which semantic versioning will be used.
+The upcoming WP Libre Form 2.0 is going to make breaking changes to it's JS "API", and this package is going to go through some changes as well.
+Expect 1.0.0 of this package to only work with WP Libre Form 2.0.
 
 # Installation
 
@@ -39,7 +40,7 @@ class Demo extends Component {
       <LibreForm form="form-slug"
         onSubmitSuccess={(...arg) => console.log(arg, 'success1')}
         onSubmitDenied={(...arg) => console.log(arg, 'denied1')}
-        afterLoad={() => console.log('wtf')}
+        afterLoad={() => console.log("I'll appear after this form has loaded")}
       />
     </div>
   }

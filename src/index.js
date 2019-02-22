@@ -70,7 +70,10 @@ export default class LibreForm extends Component {
     replace: PropTypes.func, // Change how form will be rendered
     loading: PropTypes.func, // Displayed when form is loading
     error: PropTypes.func, // Displayed when form loading errored
-    form: PropTypes.string, // Slug of the form you want to load
+    form: PropTypes.oneOfType([
+      PropTypes.string, // Slug of the form you want to load
+      PropTypes.number, // Or the ID
+    ]),
     referrer: PropTypes.string, // Set the referrer field value
     formKey: PropTypes.string, // Use custom key
   }
@@ -151,11 +154,23 @@ export default class LibreForm extends Component {
   loadForm() {
     const { form } = this.props
     const { WordPress } = window.ajax_object
+    const formType = typeof form
 
     this.setState({ form: { ...this.state.form, status: STATUS.LOADING } })
 
+    let reqURL = `${WordPress}/wp-json/wp/v2/wplf-form?per_page=1`
+
+    if (formType === 'string') { // search with slug
+      reqURL = reqURL + `&slug=${form}`
+    } else if (formType === 'number') { // search with id
+      reqURL = reqURL + `&include=${form}`
+    } else {
+      throw errors.invalidFormProp()
+    }
+
+
     return new Promise((resolve, reject) => {
-      fetch(`${WordPress}/wp-json/wp/v2/wplf-form?slug=${form}&per_page=1`, {
+      fetch(reqURL, {
         credentials: ajax_object.ajax_credentials || 'same-origin',
         headers: ajax_object.request_headers || {},
       })

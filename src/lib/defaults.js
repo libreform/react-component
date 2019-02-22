@@ -13,5 +13,6 @@ export default {
     WPURLNull: 'WordPress URL must be set',
     unknown: 'Unknown error occurred',
     loading: 'Loading...',
+    invalidFormProp: 'Invalid form type'
   }
 }
