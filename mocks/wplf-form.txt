@@ -10,7 +10,7 @@ window.wplf = {
     var data = new FormData(form);
 
     // Pass language if it exists.
-    ajax_object.lang && data.append('lang', ajax_object.lang);
+    WPLF_DATA.lang && data.append('lang', WPLF_DATA.lang);
 
     // add class to enable css changes to indicate ajax loading
     form.classList.add("sending");
@@ -20,9 +20,9 @@ window.wplf = {
       error.parentNode.removeChild(error);
     });
 
-    fetch(ajax_object.ajax_url  + '?action=wplf_submit', {
+    fetch(WPLF_DATA.ajax_url  + '?action=wplf_submit', {
       method: "POST",
-      credentials: ajax_object.ajax_credentials || 'same-origin',
+      credentials: WPLF_DATA.ajax_credentials || 'same-origin',
       body: data
     }).then(function(response) {
       return response.text();
@@ -121,7 +121,7 @@ window.wplf = {
     };
     var get_script = function (script) {
       var elmnt = document.createElement('script');
-      elmnt.src = ajax_object.wplf_assets_dir + '/scripts/polyfills/' + script + '.js';
+      elmnt.src = WPLF_DATA.wplf_assets_dir + '/scripts/polyfills/' + script + '.js';
 
       return elmnt;
     };

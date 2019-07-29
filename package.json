@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "build": "nwb build-react-component",
+    "build:watch": "nodemon -w src -x 'rm .babelrc &> /dev/null; nwb build-react-component --no-demo'",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "pretest": "node test-server.js &",
@@ -24,10 +25,11 @@
     "react": "16.x"
   },
   "devDependencies": {
+    "html-react-parser": "^0.4.6",
+    "nodemon": "^1.19.1",
     "nwb": "0.21.x",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "html-react-parser": "^0.4.6"
+    "react-dom": "^16.4.1"
   },
   "author": "Christian Nikkanen <hi@kisu.li>",
   "license": "MIT",

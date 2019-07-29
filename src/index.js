@@ -24,10 +24,11 @@ export const configure = (options = {}) => {
     scriptLocation,
     onSubmitFailure,
     headers,
-    i18n
+    i18n,
+    settings,
   } = {
     ...otherDefaults,
-    ...(window.ajax_object || {}), // Allow calling configure multiple times
+    ...(window.WPLF_DATA || {}), // Allow calling configure multiple times
     ...otherOptions,
     i18n: {
       ...defaultI18n,
@@ -54,9 +55,10 @@ export const configure = (options = {}) => {
       : scriptLocation,
     onSubmitFailure,
     i18n,
+    settings,
   }
 
-  window.ajax_object = conf
+  window.WPLF_DATA = conf
 }
 
 export default class LibreForm extends Component {
@@ -108,7 +110,7 @@ export default class LibreForm extends Component {
         }
       }
     },
-    loading: props => <p>{window.ajax_object.i18n.loading}</p>,
+    loading: props => <p>{window.WPLF_DATA.i18n.loading}</p>,
     error: ({ message }) => <p>{message}</p>,
     referrer: window.location.href,
     onSubmitSuccess: (response) => console.log('Form submission success', response),
@@ -147,13 +149,13 @@ export default class LibreForm extends Component {
       denied[slug](errOrResponse, this)
     } else {
       // error
-      window.ajax_object.onSubmitFailure(errOrResponse)
+      window.WPLF_DATA.onSubmitFailure(errOrResponse)
     }
   }
 
   loadForm() {
     const { form } = this.props
-    const { WordPress } = window.ajax_object
+    const { WordPress } = window.WPLF_DATA
     const formType = typeof form
 
     this.setState({ form: { ...this.state.form, status: STATUS.LOADING } })
@@ -171,8 +173,8 @@ export default class LibreForm extends Component {
 
     return new Promise((resolve, reject) => {
       fetch(reqURL, {
-        credentials: ajax_object.ajax_credentials || 'same-origin',
-        headers: ajax_object.request_headers || {},
+        credentials: WPLF_DATA.ajax_credentials || 'same-origin',
+        headers: WPLF_DATA.request_headers || {},
       })
         .then(r => {
           const { ok } = r
@@ -186,6 +188,11 @@ export default class LibreForm extends Component {
         .then(results => {
           if (!results || !results.length) {
             return reject(errors.formNotFound())
+          }
+
+          if (!this.mounted) {
+            resolve()
+            return
           }
 
           const post = results[0]
@@ -202,6 +209,10 @@ export default class LibreForm extends Component {
   }
 
   setErrorState = (error) => {
+    if (!this.mounted) {
+      return
+    }
+
     if (error) {
       const { message } = error
 
@@ -264,10 +275,12 @@ export default class LibreForm extends Component {
   }
 
   componentDidMount () {
+    this.mounted = true
+
     const { beforeLoad, form } = this.props
     const container = this.container
 
-    if (!window.ajax_object) {
+    if (!window.WPLF_DATA) {
       throw errors.notConfigured()
     }
 
@@ -291,6 +304,8 @@ export default class LibreForm extends Component {
   }
 
   componentWillUnmount () {
+    this.mounted = false
+
     const { form } = this.props
 
     if (success[form]) {
@@ -313,6 +328,21 @@ export default class LibreForm extends Component {
     const isLoaded = this.isLoaded()
     const isError = form.status === STATUS.ERROR
 
+    console.log(this.props, this.state)
+
+    /**
+     * Hack. I've removed the rendered and protected properties in my api proxy, and
+     * thus flattened the response. WPLF doesn't have custom REST API endpoints,
+     * and use the same endpoints as WP core.
+     */
+    const getContent = (content) => {
+      if (content.rendered) {
+        return content.rendered
+      }
+
+      return content
+    }
+
     return (
       <div
         className="react-libre-form"
@@ -322,7 +352,9 @@ export default class LibreForm extends Component {
         {isError ? (
           error(form.data)
         ) : isLoaded ? (
-          <HTML options={{ replace }}>{form.data.content.rendered}</HTML>
+          <HTML options={{ replace }}>
+            {getContent(form.data.content)}
+          </HTML>
         ) : loading(form)}
       </div>
     )

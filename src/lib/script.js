@@ -9,7 +9,7 @@ const script = {
    */
   load: () => {
     script.status = STATUS.LOADING
-    const { scriptLocation } = window.ajax_object
+    const { scriptLocation } = window.WPLF_DATA
 
     return new Promise((resolve, reject) => {
       const tag = document.createElement('script')
