@@ -4,14 +4,14 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const entries = {
-  'react-libre-form': [
+  'react-component': [
     'regenerator-runtime',
     path.join(__dirname, '/src/index.tsx'),
   ],
 }
 
 const minifiedEntries = {
-  'react-libre-form.min': [
+  'react-component.min': [
     'regenerator-runtime',
     path.join(__dirname, '/src/index.tsx'),
   ],

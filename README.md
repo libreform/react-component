@@ -1,4 +1,4 @@
-# react-libre-form
+# React component for WP Libre Form
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
@@ -7,37 +7,20 @@ React component for WP Libre Form. Depends on @libreform/libreform, which is NOT
 
 # Installation
 
-`npm install @libreform/react-libre-form`
-
-# Dependencies
-
-There are no dependencies, except the peer dependency of html-react-parser, which is required to render the HTML WordPress outputs.
-If you're already using a HTML parser w/ WP REST API, I suggest that you migrate to html-react-parser, as react-html-parser is massive.
+`npm install @libreform/react-component-libre-form`
 
 # Usage
 
-Import and configure, render like any other component
+Import and configure, render like any other component. Should work just like WPLF works without React. If you need access to the dom node, you can create a ref with `useRef()` and pass it into the component as property.
 
 ```
-import LibreForm, { configure } from 'react-libre-form'
-
-configure({
-  WordPress: 'https://libreformbuilder.local',
-  i18n: {
-    loading: 'Custom loading message',
-    scriptTimeout: 'Timeout while loading wplf-client.js',
-  }
-})
+import LibreForm from '@libreform/react-component'
 
 class Demo extends Component {
   render() {
     return <div>
-      <h1>react-libre-form Demo</h1>
-      <LibreForm form="form-slug"
-        onSubmitSuccess={(...arg) => console.log(arg, 'success1')}
-        onSubmitDenied={(...arg) => console.log(arg, 'denied1')}
-        afterLoad={() => console.log("I'll appear after this form has loaded")}
-      />
+      <h1>Demo</h1>
+      <LibreForm form="form-slug" />
     </div>
   }
 }
@@ -45,15 +28,11 @@ class Demo extends Component {
 
 # Gotchas
 
-## Submit button value is dismissed
+This is just a dangerouslySetInnerHTML wrapper & bindings for WPLF. There's no sanitation. You should know the risks of unrestricted HTML.
 
-If you have `<input type="submit" value="Send form" />` in your form HTML, you might notice that the "Send form" is missing in your rendered form. TL;DR explanation on why this happens: React.
-
-`<button type="submit">Send form</button>` is functionally equivalent and works without an issue.
-
-[build-badge]: https://img.shields.io/travis/libreform/react-libre-form/master.png?style=flat-square
-[build]: https://travis-ci.org/libreform/react-libre-form
-[npm-badge]: https://img.shields.io/npm/v/react-libre-form.png?style=flat-square
-[npm]: https://www.npmjs.org/package/react-libre-form
-[coveralls-badge]: https://img.shields.io/coveralls/libreform/react-libre-form/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/libreform/react-libre-form
+[build-badge]: https://img.shields.io/travis/libreform/react-component/master.png?style=flat-square
+[build]: https://travis-ci.org/libreform/react-component
+[npm-badge]: https://img.shields.io/npm/v/react-component.png?style=flat-square
+[npm]: https://www.npmjs.org/package/react-component
+[coveralls-badge]: https://img.shields.io/coveralls/libreform/react-component/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/libreform/react-component

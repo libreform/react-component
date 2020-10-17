@@ -6,7 +6,7 @@
       "uuid": "5ed23ee7-f2cb-44a6-8fbe-c720b1f7943f",
       "title": "Stress Test 900001 #6",
       "referrer": {
-        "type": "react-libre-form",
+        "type": "react-component",
         "url": "http://libreform.lndo.site/libreforms/sub-view-2/"
       },
       "historyId": 66,

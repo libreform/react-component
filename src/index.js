@@ -43,16 +43,15 @@ export const configure = (options = {}) => {
   }
 
   const conf = {
-    ajax_url: ajaxURL.indexOf('http') === -1
-      ? WordPress + ajaxURL
-      : ajaxURL,
+    ajax_url: ajaxURL.indexOf('http') === -1 ? WordPress + ajaxURL : ajaxURL,
     ajax_credentials: ajaxCredentials,
     wplf_assets_dir: `${WordPress}/wp-content/plugins/wp-libre-form/assets`,
     WordPress,
     request_headers: headers,
-    scriptLocation: scriptLocation.indexOf('http') === -1
-      ? WordPress + scriptLocation
-      : scriptLocation,
+    scriptLocation:
+      scriptLocation.indexOf('http') === -1
+        ? WordPress + scriptLocation
+        : scriptLocation,
     onSubmitFailure,
     i18n,
     settings,
@@ -89,14 +88,11 @@ export default class LibreForm extends Component {
           const {
             defaultvalue, // https://github.com/remarkablemark/html-react-parser/issues/63#issuecomment-407593055
             value,
-            ...props,
+            ...props
           } = attribs
 
           // We don't want to "remove" any attributes, which is why this is separate
-          const {
-            type,
-            name,
-          } = props
+          const { type, name } = props
 
           if (defaultvalue || value) {
             props.defaultValue = defaultvalue || value
@@ -110,11 +106,13 @@ export default class LibreForm extends Component {
         }
       }
     },
-    loading: props => <p>{window.WPLF_DATA.i18n.loading}</p>,
+    loading: (props) => <p>{window.WPLF_DATA.i18n.loading}</p>,
     error: ({ message }) => <p>{message}</p>,
     referrer: window.location.href,
-    onSubmitSuccess: (response) => console.log('Form submission success', response),
-    onSubmitDenied: (response) => console.log('Form submission denied', response),
+    onSubmitSuccess: (response) =>
+      console.log('Form submission success', response),
+    onSubmitDenied: (response) =>
+      console.log('Form submission denied', response),
   }
 
   constructor(props) {
@@ -162,21 +160,22 @@ export default class LibreForm extends Component {
 
     let reqURL = `${WordPress}/wp-json/wp/v2/wplf-form?per_page=1`
 
-    if (formType === 'string') { // search with slug
+    if (formType === 'string') {
+      // search with slug
       reqURL = reqURL + `&slug=${form}`
-    } else if (formType === 'number') { // search with id
+    } else if (formType === 'number') {
+      // search with id
       reqURL = reqURL + `&include=${form}`
     } else {
       throw errors.invalidFormProp()
     }
-
 
     return new Promise((resolve, reject) => {
       fetch(reqURL, {
         credentials: WPLF_DATA.ajax_credentials || 'same-origin',
         headers: WPLF_DATA.request_headers || {},
       })
-        .then(r => {
+        .then((r) => {
           const { ok } = r
 
           if (!ok) {
@@ -185,7 +184,7 @@ export default class LibreForm extends Component {
             return r.json()
           }
         })
-        .then(results => {
+        .then((results) => {
           if (!results || !results.length) {
             return reject(errors.formNotFound())
           }
@@ -197,12 +196,15 @@ export default class LibreForm extends Component {
 
           const post = results[0]
 
-          this.setState({
-            form: {
-              status: STATUS.DONE,
-              data: post,
-            }
-          }, resolve)
+          this.setState(
+            {
+              form: {
+                status: STATUS.DONE,
+                data: post,
+              },
+            },
+            resolve
+          )
         })
         .catch(reject)
     })
@@ -222,7 +224,7 @@ export default class LibreForm extends Component {
           form: {
             status: STATUS.ERROR,
             data: error,
-          }
+          },
         })
       }
     }
@@ -231,20 +233,29 @@ export default class LibreForm extends Component {
     this.setState({
       form: {
         status: STATUS.ERROR,
-        data: errors.unknown()
-      }
+        data: errors.unknown(),
+      },
     })
   }
 
   isLoaded() {
     const { form } = this.state
-    const conditions = [script.status === STATUS.DONE, form.status === STATUS.DONE]
+    const conditions = [
+      script.status === STATUS.DONE,
+      form.status === STATUS.DONE,
+    ]
 
-    return conditions.every(cond => cond === true)
+    return conditions.every((cond) => cond === true)
   }
 
   onReady() {
-    const { afterLoad, onSubmitSuccess, onSubmitDenied, form, referrer } = this.props
+    const {
+      afterLoad,
+      onSubmitSuccess,
+      onSubmitDenied,
+      form,
+      referrer,
+    } = this.props
 
     if (this.isLoaded()) {
       const formEl = this.container.querySelector('form')
@@ -252,7 +263,8 @@ export default class LibreForm extends Component {
       if (formEl) {
         const referrerInput = formEl.querySelector('[name="referrer"]')
 
-        referrerInput && (referrerInput.value = referrer || window.location.href)
+        referrerInput &&
+          (referrerInput.value = referrer || window.location.href)
         afterLoad && afterLoad(form, this.container)
 
         if (window.wplf) {
@@ -268,13 +280,15 @@ export default class LibreForm extends Component {
 
           window.wplf.attach(formEl)
         } else {
-          console.log('WPLF is not loaded yet, which is... weird. You\'ve encountered a bug.')
+          console.log(
+            "WPLF is not loaded yet, which is... weird. You've encountered a bug."
+          )
         }
       }
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.mounted = true
 
     const { beforeLoad, form } = this.props
@@ -284,26 +298,34 @@ export default class LibreForm extends Component {
       throw errors.notConfigured()
     }
 
-    if (script.status === STATUS.NOT_REQUESTED || script.status === STATUS.ERROR) {
-      script.load().then(() => {
-        beforeLoad && beforeLoad(form, container)
-        return this.loadForm().then(() => {
-          this.onReady()
+    if (
+      script.status === STATUS.NOT_REQUESTED ||
+      script.status === STATUS.ERROR
+    ) {
+      script
+        .load()
+        .then(() => {
+          beforeLoad && beforeLoad(form, container)
+          return this.loadForm().then(() => {
+            this.onReady()
+          })
         })
-      }).catch(this.setErrorState)
+        .catch(this.setErrorState)
     } else {
       beforeLoad && beforeLoad(form, container)
-      this.loadForm().then(() => {
-        this.onReady()
-      }).catch(this.setErrorState)
+      this.loadForm()
+        .then(() => {
+          this.onReady()
+        })
+        .catch(this.setErrorState)
     }
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     this.onReady()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.mounted = false
 
     const { form } = this.props
@@ -321,8 +343,15 @@ export default class LibreForm extends Component {
    * You can make the form re-render by providing a different key. By default,
    * the form will re-render when referrer changes.
    */
-  render () {
-    const { form: formSlug, referrer, formKey, loading, error, replace } = this.props
+  render() {
+    const {
+      form: formSlug,
+      referrer,
+      formKey,
+      loading,
+      error,
+      replace,
+    } = this.props
     const { form } = this.state
 
     const isLoaded = this.isLoaded()
@@ -345,17 +374,19 @@ export default class LibreForm extends Component {
 
     return (
       <div
-        className="react-libre-form"
-        ref={n => { this.container = n }}
+        className="react-component"
+        ref={(n) => {
+          this.container = n
+        }}
         key={formKey || `${formSlug}-${referrer}`}
       >
         {isError ? (
           error(form.data)
         ) : isLoaded ? (
-          <HTML options={{ replace }}>
-            {getContent(form.data.content)}
-          </HTML>
-        ) : loading(form)}
+          <HTML options={{ replace }}>{getContent(form.data.content)}</HTML>
+        ) : (
+          loading(form)
+        )}
       </div>
     )
   }

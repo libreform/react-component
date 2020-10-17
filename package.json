@@ -2,7 +2,7 @@
   "name": "@libreform/react-component",
   "version": "2.0.0-beta.1",
   "description": "React component for WP Libre Form",
-  "main": "dist/react-libre-form.js",
+  "main": "dist/react-component.js",
   "type": "module",
   "scripts": {
     "pretest": "node test-server.js &",
@@ -59,7 +59,7 @@
   },
   "author": "Christian Nikkanen <hi@kisu.li>",
   "license": "MIT",
-  "repository": "git@github.com:libreform/react-libre-form.git",
+  "repository": "git@github.com:libreform/react-component.git",
   "keywords": [
     "react-component"
   ]

@@ -38,7 +38,7 @@ function Form({
 
   if (!referrerData) {
     referrerData = {
-      type: 'react-libre-form',
+      type: 'react-component',
       url: window.location.href,
     }
   }
@@ -188,7 +188,7 @@ function LibreForm({
   }
 
   return (
-    <div className={`react-libre-form ${className}`} ref={containerRef}>
+    <div className={`react-component ${className}`} ref={containerRef}>
       {content}
     </div>
   )
