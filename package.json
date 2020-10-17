@@ -3,7 +3,6 @@
   "version": "2.0.0-beta.1",
   "description": "React component for WP Libre Form",
   "main": "dist/react-component.js",
-  "type": "module",
   "scripts": {
     "pretest": "node test-server.js &",
     "test": "echo \"Somebody who's getting paid for this shit can fight with the POS called jest, and write some tests that work. Run jest in the directory and you'll understand why I'm not doing them.\"",
@@ -12,7 +11,6 @@
     "dev": "webpack --env.NODE_ENV=development --watch"
   },
   "peerDependencies": {
-    "html-react-parser": "^0.4.6",
     "@libreform/libreform": "^2.0.0-beta.11",
     "react": "16.x"
   },
@@ -47,11 +45,11 @@
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "jest": "^26.5.3"
   },
   "dependencies": {
     "abort-controller": "^3.0.0",
-    "jest": "^26.5.3",
     "react-modal": "^3.11.2",
     "react-window": "^1.8.5",
     "react-window-infinite-loader": "^1.0.5",

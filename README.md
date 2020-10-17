@@ -11,19 +11,20 @@ React component for WP Libre Form. Depends on @libreform/libreform, which is NOT
 
 # Usage
 
-Import and configure, render like any other component. Should work just like WPLF works without React. If you need access to the dom node, you can create a ref with `useRef()` and pass it into the component as property.
+Like any other component. Should work just like WPLF works without React. If you need access to the dom node, you can create a ref with `useRef()` and pass it into the component as property.
 
 ```
 import LibreForm from '@libreform/react-component'
 
-class Demo extends Component {
-  render() {
-    return <div>
-      <h1>Demo</h1>
-      <LibreForm form="form-slug" />
-    </div>
-  }
+function Demo() {
+  const ref = useRef(null)
+
+  return <div>
+    <h1>Demo</h1>
+    <LibreForm form="form-slug" ref={ref} className="myClassName" IfErrors={YourErrorComponent} WhileLoading{YourLoadingComponent} />
+  </div>
 }
+
 ```
 
 # Gotchas
