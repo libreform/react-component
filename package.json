@@ -1,8 +1,9 @@
 {
   "name": "@libreform/react-component",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.3",
   "description": "React component for WP Libre Form",
-  "main": "dist/react-component.js",
+  "main": "dist/index.js",
+  "private": false,
   "scripts": {
     "pretest": "node test-server.js &",
     "test": "echo \"Somebody who's getting paid for this shit can fight with the POS called jest, and write some tests that work. Run jest in the directory and you'll understand why I'm not doing them.\"",

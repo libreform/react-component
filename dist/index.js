@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("WPLF"));
+		module.exports = factory(require("react"), require("@libreform/libreform"));
 	else if(typeof define === 'function' && define.amd)
 		define(["React", "WPLF"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactLibreForm"] = factory(require("react"), require("WPLF"));
+		exports["ReactLibreForm"] = factory(require("react"), require("@libreform/libreform"));
 	else
 		root["ReactLibreForm"] = factory(root["React"], root["WPLF"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__) {

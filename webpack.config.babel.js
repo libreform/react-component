@@ -4,17 +4,11 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const entries = {
-  'react-component': [
-    'regenerator-runtime',
-    path.join(__dirname, '/src/index.tsx'),
-  ],
+  index: ['regenerator-runtime', path.join(__dirname, '/src/index.tsx')],
 }
 
 const minifiedEntries = {
-  'react-component.min': [
-    'regenerator-runtime',
-    path.join(__dirname, '/src/index.tsx'),
-  ],
+  'index.min': ['regenerator-runtime', path.join(__dirname, '/src/index.tsx')],
 }
 
 export default ({ NODE_ENV: env }) => ({
@@ -58,7 +52,12 @@ export default ({ NODE_ENV: env }) => ({
       amd: 'ReactDOM',
       root: 'ReactDOM',
     },
-    '@libreform/libreform': 'WPLF',
+    '@libreform/libreform': {
+      commonjs: '@libreform/libreform',
+      commonjs2: '@libreform/libreform',
+      amd: 'WPLF',
+      root: 'WPLF',
+    },
   },
   optimization:
     env === 'production'
