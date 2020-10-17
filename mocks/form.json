@@ -1,61 +1,72 @@
-[
-  {
-    "id": 121,
-    "date": "2018-07-22T14:08:24",
-    "date_gmt": "2018-07-22T11:08:24",
-    "guid": {
-      "rendered": "https://libreformbuilder.local/?post_type=wplf-form&#038;p=121"
+{
+  "kind": "getForm",
+  "data": {
+    "raw": {
+      "ID": 215,
+      "slug": "stress-test-900001",
+      "title": "Stress Test 900001",
+      "fields": {
+        "name": {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "multiple": false,
+          "attributes": { "id": "name", "placeholder": "John Doe" }
+        },
+        "email": {
+          "name": "email",
+          "type": "email",
+          "required": false,
+          "multiple": false,
+          "attributes": { "id": "email", "value": "test@email.com" }
+        },
+        "singleFile": {
+          "name": "singleFile",
+          "type": "file",
+          "required": false,
+          "multiple": false,
+          "attributes": { "id": "singleFile" }
+        },
+        "multiFile": {
+          "name": "multiFile",
+          "type": "file",
+          "required": false,
+          "multiple": true,
+          "attributes": { "multiple": "", "id": "multiFile" }
+        },
+        "box": {
+          "name": "box",
+          "type": "checkbox",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        },
+        "radio": {
+          "name": "radio",
+          "type": "radio",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        },
+        "radio2": {
+          "name": "radio2",
+          "type": "radio",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        }
+      },
+      "content": "<div\r\n  class=\"wplf-tabs tabbed-form-example\"\r\n  data-name=\"tabbedFormExample\"\r\n  data-default=\"first\"\r\n  data-remember\r\n>\r\n  <header>\r\n    <button\r\n      type=\"button\"\r\n      class=\"wplf-tabs__tabSwitcher\"\r\n      data-name=\"tabbedFormExample\"\r\n      data-target=\"first\"\r\n    >\r\n      First\r\n    </button>\r\n\r\n    <button\r\n      type=\"button\"\r\n      class=\"wplf-tabs__tabSwitcher\"\r\n      data-name=\"tabbedFormExample\"\r\n      data-target=\"second\"\r\n    >\r\n      Second\r\n    </button>\r\n  </header>\r\n\r\n  <section\r\n    class=\"wplf-tabs__tab wplf\"\r\n    data-name=\"tabbedFormExample\"\r\n    data-tab=\"first\"\r\n  >\r\n    <div class=\"wplf-formRow\">\r\n      <label for=\"name\">\r\n        <strong>## PLL__ PleaseEnterYourName ##</strong>\r\n        <input\r\n          type=\"text\"\r\n          name=\"name\"\r\n          id=\"name\"\r\n          placeholder=\"John Doe\"\r\n          name=\"Tester\"\r\n          required\r\n        />\r\n      </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <label for=\"email\">\r\n        <strong>## PLL__ PleaseEnterYourEmail ##</strong>\r\n        <input type=\"email\" name=\"email\" id=\"email\" value=\"test@email.com\" />\r\n      </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <label for=\"singleFile\">\r\n        <strong>## PLL__ UploadSomething ##</strong>\r\n        <input type=\"file\" name=\"singleFile\" id=\"singleFile\" />\r\n      </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <label for=\"multiFile\">\r\n        <strong>## PLL__ UploadMultiple ##</strong>\r\n        <input type=\"file\" name=\"multiFile[]\" multiple id=\"multiFile\" />\r\n      </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <strong>## PLL__ FillBoxes ##</strong>\r\n\r\n      <label> <input type=\"checkbox\" name=\"box[]\" value=\"1\" /> 1 </label>\r\n\r\n      <label> <input type=\"checkbox\" name=\"box[]\" value=\"2\" /> 2 </label>\r\n\r\n      <label> <input type=\"checkbox\" name=\"box[]\" value=\"3\" /> 3 </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <strong>## PLL__ FillRadio ##</strong>\r\n\r\n      <label> <input type=\"radio\" name=\"radio[]\" value=\"1\" /> 1 </label>\r\n\r\n      <label> <input type=\"radio\" name=\"radio[]\" value=\"2\" /> 2 </label>\r\n\r\n      <label> <input type=\"radio\" name=\"radio[]\" value=\"3\" /> 3 </label>\r\n    </div>\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <button type=\"submit\">Submit</button>\r\n    </div>\r\n  </section>\r\n\r\n  <section\r\n    class=\"wplf-tabs__tab\"\r\n    data-name=\"tabbedFormExample\"\r\n    data-tab=\"second\"\r\n  >\r\n    More form fields:\r\n\r\n    <div class=\"wplf-formRow\">\r\n      <strong>## PLL__ FillRadio ##</strong>\r\n\r\n      <label> <input type=\"radio\" name=\"radio2[]\" value=\"1\" /> 1 </label>\r\n\r\n      <label> <input type=\"radio\" name=\"radio2[]\" value=\"2\" /> 2 </label>\r\n\r\n      <label> <input type=\"radio\" name=\"radio2[]\" value=\"3\" /> 3 </label>\r\n    </div>\r\n\r\n    Go back to the previous tab to submit the form.\r\n  </section>\r\n</div>",
+      "additionalFields": [
+        "_fcaptcha",
+        "_referrerData",
+        "_nojs",
+        "_formId",
+        "lang"
+      ],
+      "addToMediaLibrary": 1,
+      "versionCreatedAt": "2.0.0-beta.1"
     },
-    "modified": "2018-07-22T15:37:25",
-    "modified_gmt": "2018-07-22T12:37:25",
-    "slug": "react",
-    "status": "publish",
-    "type": "wplf-form",
-    "link": "https://libreformbuilder.local/libre-forms/react/",
-    "title": {
-      "rendered": "React"
-    },
-    "content": {
-      "rendered": "<form\n  data-form-id=\"121\"\n  class=\"libre-form libre-form-121 \"\n    >\n  <span>Tests will complete!</span>  <textarea name=\"react\">Hello!</textarea>    </p> <p><button type=\"submit\">Submit</button></p> <p>    <!-- Any valid HTML form can be used here! -->    <input type=\"hidden\" name=\"referrer\" value=\"https://libreformbuilder.local/libre-forms/react/\">\n  <input type=\"hidden\" name=\"_referrer_id\" value=\"121\">\n  <input type=\"hidden\" name=\"_form_id\" value=\"121\">\n</form>\n\n",
-      "protected": false
-    },
-    "template": "",
-    "meta": [
-
-    ],
-    "_links": {
-      "self": [
-        {
-          "href": "https://libreformbuilder.local/wp-json/wp/v2/wplf-form/121"
-        }
-      ],
-      "collection": [
-        {
-          "href": "https://libreformbuilder.local/wp-json/wp/v2/wplf-form"
-        }
-      ],
-      "about": [
-        {
-          "href": "https://libreformbuilder.local/wp-json/wp/v2/types/wplf-form"
-        }
-      ],
-      "version-history": [
-        {
-          "href": "https://libreformbuilder.local/wp-json/wp/v2/wplf-form/121/revisions"
-        }
-      ],
-      "wp:attachment": [
-        {
-          "href": "https://libreformbuilder.local/wp-json/wp/v2/media?parent=121"
-        }
-      ],
-      "curies": [
-        {
-          "name": "wp",
-          "href": "https://api.w.org/{rel}",
-          "templated": true
-        }
-      ]
-    }
+    "rendered": "     <div    class=\"wplf-tabs tabbed-form-example\"    data-name=\"tabbedFormExample\"    data-default=\"first\"    data-remember  >    <header>      <button        type=\"button\"        class=\"wplf-tabs__tabSwitcher\"        data-name=\"tabbedFormExample\"        data-target=\"first\"      >        First      </button>        <button        type=\"button\"        class=\"wplf-tabs__tabSwitcher\"        data-name=\"tabbedFormExample\"        data-target=\"second\"      >        Second      </button>    </header>      <section      class=\"wplf-tabs__tab wplf\"      data-name=\"tabbedFormExample\"      data-tab=\"first\"    >      <div class=\"wplf-formRow\">        <label for=\"name\">          <strong>PleaseEnterYourName</strong>          <input            type=\"text\"            name=\"name\"            id=\"name\"            placeholder=\"John Doe\"            name=\"Tester\"            required          />        </label>      </div>        <div class=\"wplf-formRow\">        <label for=\"email\">          <strong>PleaseEnterYourEmail</strong>          <input type=\"email\" name=\"email\" id=\"email\" value=\"test@email.com\" />        </label>      </div>        <div class=\"wplf-formRow\">        <label for=\"singleFile\">          <strong>UploadSomething</strong>          <input type=\"file\" name=\"singleFile\" id=\"singleFile\" />        </label>      </div>        <div class=\"wplf-formRow\">        <label for=\"multiFile\">          <strong>UploadMultiple</strong>          <input type=\"file\" name=\"multiFile[]\" multiple id=\"multiFile\" />        </label>      </div>        <div class=\"wplf-formRow\">        <strong>FillBoxes</strong>          <label> <input type=\"checkbox\" name=\"box[]\" value=\"1\" /> 1 </label>          <label> <input type=\"checkbox\" name=\"box[]\" value=\"2\" /> 2 </label>          <label> <input type=\"checkbox\" name=\"box[]\" value=\"3\" /> 3 </label>      </div>        <div class=\"wplf-formRow\">        <strong>FillRadio</strong>          <label> <input type=\"radio\" name=\"radio[]\" value=\"1\" /> 1 </label>          <label> <input type=\"radio\" name=\"radio[]\" value=\"2\" /> 2 </label>          <label> <input type=\"radio\" name=\"radio[]\" value=\"3\" /> 3 </label>      </div>        <div class=\"wplf-formRow\">        <button type=\"submit\">Submit</button>      </div>    </section>      <section      class=\"wplf-tabs__tab\"      data-name=\"tabbedFormExample\"      data-tab=\"second\"    >      More form fields:        <div class=\"wplf-formRow\">        <strong>FillRadio</strong>          <label> <input type=\"radio\" name=\"radio2[]\" value=\"1\" /> 1 </label>          <label> <input type=\"radio\" name=\"radio2[]\" value=\"2\" /> 2 </label>          <label> <input type=\"radio\" name=\"radio2[]\" value=\"3\" /> 3 </label>      </div>        Go back to the previous tab to submit the form.    </section>  </div>        <div class=\"wplf-formRow wplf-fcaptcha\" aria-hidden=\"true\">           <label>             <strong>Prove that you are a human</strong>              <input type=\"text\" name=\"_fcaptcha\">           </label>         </div>          <div class=\"wplf-formMeta\" aria-hidden=\"true\">                      <input type=\"hidden\" name=\"_referrerData\" value='{\"type\":\"singular\",\"id\":false,\"url\":\"http:\\/\\/libreform.lndo.site\\/wp-json\\/wplf\\/v2\\/getForm?form=215\"}'>           <input type=\"hidden\" name=\"_nojs\" value=\"1\">           <input type=\"hidden\" name=\"_formId\" value=\"215\">         </div>         "
   }
-]
+}

@@ -1,0 +1,4 @@
+{
+  "vscode-php-cs-fixer.toolPath": "/home/k1sul1/Projects/libreform.local/htdocs/wp-content/plugins/wp-libreform/vendor/bin/phpcs",
+  "vscode-php-cs-fixer.config": "/home/k1sul1/Projects/libreform.local/htdocs/wp-content/plugins/wp-libreform/phpcs.xml"
+}

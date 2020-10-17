@@ -1,1 +1,81 @@
-{"ok":1,"form_id":121,"slug":"react","debug":[],"title":"React","submission_id":145,"submission_title":" <>","success":"Success!"}
+{
+  "kind": "submitForm",
+  "data": {
+    "submission": {
+      "ID": 6,
+      "uuid": "5ed23ee7-f2cb-44a6-8fbe-c720b1f7943f",
+      "title": "Stress Test 900001 #6",
+      "referrer": {
+        "type": "react-libre-form",
+        "url": "http://libreform.lndo.site/libreforms/sub-view-2/"
+      },
+      "historyId": 66,
+      "createdAt": "2020-10-17 17:55:47",
+      "modifiedAt": "2020-10-17 17:55:47",
+      "usedFallback": false,
+      "formId": 215,
+      "entries": {
+        "name": "dd",
+        "email": "test@email.com",
+        "singleFile": "",
+        "multiFile": "",
+        "box": null,
+        "radio": null,
+        "radio2": null
+      },
+      "formFields": {
+        "name": {
+          "name": "name",
+          "type": "text",
+          "required": true,
+          "multiple": false,
+          "attributes": { "id": "name", "placeholder": "John Doe" }
+        },
+        "email": {
+          "name": "email",
+          "type": "email",
+          "required": false,
+          "multiple": false,
+          "attributes": { "id": "email", "value": "test@email.com" }
+        },
+        "singleFile": {
+          "name": "singleFile",
+          "type": "file",
+          "required": false,
+          "multiple": false,
+          "attributes": { "id": "singleFile" }
+        },
+        "multiFile": {
+          "name": "multiFile",
+          "type": "file",
+          "required": false,
+          "multiple": true,
+          "attributes": { "multiple": "", "id": "multiFile" }
+        },
+        "box": {
+          "name": "box",
+          "type": "checkbox",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        },
+        "radio": {
+          "name": "radio",
+          "type": "radio",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        },
+        "radio2": {
+          "name": "radio2",
+          "type": "radio",
+          "required": false,
+          "multiple": true,
+          "attributes": { "value": "3" }
+        }
+      },
+      "meta": { "versionCreatedAt": "2.0.0-beta.1" }
+    },
+    "message": "<p>Form submitted succesfully. </p>\r\n\r\nTest: \r\n\r\nname: dd\nemail: test@email.com\nsingleFile: (empty)\nmultiFile: (empty)\nbox: (empty)\nradio: (empty)\nradio2: (empty)\n"
+  }
+}

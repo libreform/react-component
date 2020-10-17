@@ -1,0 +1,30 @@
+{
+  "name": "libreform/react-component",
+  "description": "React component for WP Libre Form",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-only",
+  "authors": [
+    {
+      "name": "Viljami Kuosmanen",
+      "email": "viljami@viljami.io",
+      "homepage": "https://github.com/anttiviljami"
+    },
+    {
+      "name": "Timi Wahalahti",
+      "email": "timi@wahalahti.fi",
+      "homepage": "https://github.com/timiwahalahti"
+    },
+    {
+      "name": "Christian Nikkanen",
+      "email": "hire@kisu.li",
+      "homepage": "https://github.com/k1sul1"
+    }
+  ],
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "scripts": {
+    "lint": "./vendor/bin/phpcs -s --standard=./phpcs.xml -p -n",
+    "fix": "./vendor/bin/phpcbf --standard=./phpcs.xml"
+  }
+}

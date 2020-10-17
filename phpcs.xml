@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<ruleset name="wp-libre-form">
+  <description>For nicer WordPress and PHP development</description>
+
+  <!-- Files and directories to parse -->
+  <file>./index.php</file>
+
+  <!-- Excluded directories and files -->
+  <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/lang/*</exclude-pattern>
+  <exclude-pattern>*/assets/*</exclude-pattern>
+  <exclude-pattern>*.js</exclude-pattern>
+
+  <!-- Use 2 spaces for indentation -->
+  <arg name="tab-width" value="2"/>
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+  <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+
+  <!-- No TODO comments, open issues in github/gogs/gitlab instead -->
+  <rule ref="Generic.Commenting.Todo"/>
+
+  <!-- Don't allow oneliner ifs without brackets {} -->
+  <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+  <rule ref="PSR12">
+    <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps" />
+
+    <!-- I don't understand why PSR2 uses this rule as well as defining their own identical rule. -->
+    <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
+
+    <!-- Yeah how about no, K&R FTW -->
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine" />
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine" />
+
+    <!-- This isn't MVC. Don't make life hard for trying to use HTML. -->
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+
+    <!-- This rule leads to some absurd indents in multiline function calls, such as createSelector -->
+    <exclude name="PSR2.Methods.FunctionCallSignature.Indent" />
+  </rule>
+
+  <!-- Require the brace to be on the same line -->
+  <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+</ruleset>
