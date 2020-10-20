@@ -18,5 +18,5 @@ add_action('admin_enqueue_scripts', 'enqueueReactLibreForm');
 
 function enqueueReactLibreForm() {
   $file = defined('WP_DEBUG') && WP_DEBUG ? 'dist/index.js' : 'dist/index.min.js';
-  wp_enqueue_script('react-component', plugin_dir_url(__FILE__) . $file, ['react', 'react-dom', 'wplf-frontend'], get_file_data(__FILE__)['Version'], true);
+  wp_enqueue_script('react-component', plugin_dir_url(__FILE__) . $file, ['react', 'react-dom', 'wplf-frontend'], get_file_data(__FILE__, ['Version' => null])['Version'], true);
 }
