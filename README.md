@@ -29,6 +29,29 @@ function Demo() {
 
 ```
 
+# Props
+
+Only `form` is required.
+
+```typescript
+{
+  form: string | number // form id or slug
+
+  className?: string // optional custom class name
+  ref?: React.MutableRefObject<HTMLDivElement> // optional React ref
+  referrerData?: ReferrerData // optional object used for the referrer of the sub
+
+  IfErrors?: typeof Errors // react component
+  WhileLoading?: typeof Loading // react component
+
+  callbacks?: {
+     // List of callbacks to ADD on the form.
+     // Does NOT remove existing callbacks such as form reset and success message.
+    [x: string]: List<FormCallback>
+  }
+}
+```
+
 # Dependencies
 
 - react
