@@ -1,9 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import WPLF from '@libreform/libreform'
-
 import { Form, FormCallback, List } from '@libreform/libreform/dist/types'
 
-const { api } = WPLF
+const { api, manager } = WPLF
 
 function Loading({ form }: { form: string | number }) {
   return <div>Loading {form}</div>
@@ -57,7 +56,7 @@ function Form({
         refDataEl.value = JSON.stringify(referrerData)
       }
 
-      const wplfForm = WPLF.attach(el)
+      const wplfForm = manager.attach(el)
 
       if (callbacks) {
         Object.entries(callbacks).forEach(([type, list]) => {
@@ -79,7 +78,7 @@ function Form({
           })
         }
 
-        WPLF.detach(wplfForm)
+        manager.detach(wplfForm)
       }
     }
 

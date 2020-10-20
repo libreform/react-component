@@ -23,7 +23,7 @@ export default ({ NODE_ENV: env }) => ({
     libraryTarget: 'umd',
     globalObject: 'this',
     libraryExport: 'default',
-    library: 'ReactLibreForm',
+    library: 'WPLFReactComponent',
   },
   resolve: {
     extensions: ['.mjs', '.ts', '.tsx', '.js'],

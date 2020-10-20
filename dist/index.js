@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["React", "WPLF"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactLibreForm"] = factory(require("react"), require("@libreform/libreform"));
+		exports["WPLFReactComponent"] = factory(require("react"), require("@libreform/libreform"));
 	else
-		root["ReactLibreForm"] = factory(root["React"], root["WPLF"]);
+		root["WPLFReactComponent"] = factory(root["React"], root["WPLF"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -896,7 +896,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var api = _libreform_libreform__WEBPACK_IMPORTED_MODULE_1___default.a.api;
+var api = _libreform_libreform__WEBPACK_IMPORTED_MODULE_1___default.a.api,
+    manager = _libreform_libreform__WEBPACK_IMPORTED_MODULE_1___default.a.manager;
 
 function Loading(_ref2) {
   var form = _ref2.form;
@@ -941,7 +942,7 @@ function Form(_ref4) {
         refDataEl.value = JSON.stringify(referrerData);
       }
 
-      var wplfForm = _libreform_libreform__WEBPACK_IMPORTED_MODULE_1___default.a.attach(el);
+      var wplfForm = manager.attach(el);
 
       if (callbacks) {
         Object.entries(callbacks).forEach(function (_ref5) {
@@ -980,7 +981,7 @@ function Form(_ref4) {
           });
         }
 
-        _libreform_libreform__WEBPACK_IMPORTED_MODULE_1___default.a.detach(wplfForm);
+        manager.detach(wplfForm);
       };
     }
 
