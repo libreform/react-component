@@ -38,7 +38,7 @@ Only `form` is required.
   form: string | number // form id or slug
 
   className?: string // optional custom class name
-  ref?: React.MutableRefObject<HTMLDivElement> // optional React ref
+  parentRef?: React.RefObject<HTMLDivElement> // optional React ref
   referrerData?: ReferrerData // optional object used for the referrer of the sub
 
   IfErrors?: typeof Errors // react component

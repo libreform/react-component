@@ -106,7 +106,7 @@ function LibreForm({
   form,
 
   className,
-  ref,
+  parentRef,
   referrerData,
 
   WhileLoading = Loading,
@@ -116,7 +116,7 @@ function LibreForm({
   form: string | number
 
   className?: string
-  ref?: React.MutableRefObject<HTMLDivElement>
+  parentRef?: React.RefObject<HTMLDivElement>
   referrerData?: ReferrerData
 
   IfErrors?: typeof Errors
@@ -165,7 +165,7 @@ function LibreForm({
     loadForm(form)
   }, [form])
 
-  const containerRef = ref ? ref : _ref
+  const containerRef = parentRef ? parentRef : _ref
 
   let content
 
