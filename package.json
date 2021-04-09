@@ -1,6 +1,6 @@
 {
   "name": "@libreform/react-component",
-  "version": "2.0.0-beta.13",
+  "version": "2.0.3",
   "description": "React component for WP Libre Form",
   "main": "dist/index",
   "types": "dist/index",
