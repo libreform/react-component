@@ -105,7 +105,7 @@ interface ReferrerData {
 function LibreForm({
   form,
 
-  className,
+  className = "",
   parentRef,
   referrerData,
 
@@ -187,7 +187,7 @@ function LibreForm({
   }
 
   return (
-    <div className={`react-component ${className}`} ref={containerRef}>
+    <div className={`wplf-react-component ${className}`} ref={containerRef}>
       {content}
     </div>
   )
